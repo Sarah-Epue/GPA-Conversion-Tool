@@ -1,128 +1,171 @@
-import pandas as pd
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
-def convert_gpa_to_4_scale(df, grade_column, credit_column, new_gpa_column):
-    """
-    Converts a 5.0 GPA scale to a 4.0 GPA scale based on grades and credits.
+# C extensions
+*.so
 
-    Parameters:
-        df (pd.DataFrame): DataFrame containing grade and credit columns.
-        grade_column (str): Name of the column containing grades on a 5.0 scale.
-        credit_column (str): Name of the column containing credit hours.
-        new_gpa_column (str): Name of the new column for GPA on a 4.0 scale.
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-    Returns:
-        pd.DataFrame: Updated DataFrame with the new GPA column.
-    """
-    conversion_factor = 4.0 / 5.0
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
 
-    # Ensure grades are within 5.0 scale before conversion
-    df[new_gpa_column] = df[grade_column] * conversion_factor
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
 
-    return df
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
 
-if __name__ == "__main__":
-    # Example usage with provided course data
-    data = {
-        "Course": [
-            "AEB111 Introductory Zoology",
-            "BMS111 Elementary Mathematics",
-            "CHM111 General Chemistry I",
-            "CHM113 Organic Chemistry I",
-            "GST111 Use of English I",
-            "GST112 Philosophy and Logic",
-            "PBB111 Introduction to Plant Biology I",
-            "PHY109 Practical Physics",
-            "PHY111 Mech, Thermal Properties of Matter",
-            "PHY113 Vibrations, Waves and Optics",
-            "AEB122 Functional Zoology",
-            "CHM122 General Chemistry II",
-            "CHM124 Organic Chemistry II",
-            "GST121 Peace Studies and Conflict Resolution",
-            "GST122 Nigerian People and Culture",
-            "GST123 History and Philosophy of Science and Technology",
-            "PBB122 Introduction to Plant Biology II",
-            "PHY124 Electromagnetism and Modern Physics",
-            "ANT210 General Anatomy, Gross Anatomy of Upper Limb",
-            "ANT211 Gross Anatomy of Thorax",
-            "ANT212 General Histology/Cytology",
-            "ANT213 General Embryology",
-            "MBC210 Introductory Biochemistry",
-            "MBC211 Introductory Analytical Techniques",
-            "PHS211 Introductory General Physiology",
-            "PHS212 Blood Body Fluid Physiology",
-            "PHS213 Cardiovascular System",
-            "PHS214 Respiratory Physiology",
-            "ANT220 Gross Anatomy of Abdomen, Pelvis and Perineum",
-            "ANT221 Gross Anatomy of Lower Limb",
-            "ANT222 Systemic Histology I",
-            "ANT223 Systemic Embryology I",
-            "MBC220 Carbohydrate and Lipid Metabolism",
-            "MBC223 Amino Acid and Protein Metabolism",
-            "MBC225 Protein Chemistry and Enzymology",
-            "PHS221 Renal Physiology",
-            "PHS222 Gastrointestinal System",
-            "PHS223 Endocrine System",
-            "PHS224 Temperature Regulation",
-            "ANT311 Head Neck",
-            "ANT314 Neuro Anatomy I",
-            "BOT315 Biostatistics",
-            "PHS311 Renal, Fluid and Electrolyte Balance",
-            "PHS312 Hypothalamo-Hypophysea/System Physiology",
-            "PHS313 Autonomic and Neurophysiology",
-            "PHS314 Cardiovascular Physiology",
-            "PHS323 Comparative Environmental and Metabolic Physiology",
-            "CED300 Entrepreneurship Development",
-            "MBC320 Clinical Biochemistry",
-            "PCO320 Introductory Pharmacology",
-            "PHS321 Animal Experimentation/Design of Experiment",
-            "PHS322 Membrane Transport Mechanism",
-            "PHS324 Literature Review",
-            "PHS325 Seminar",
-            "PHS410 Cellular Physiology",
-            "PHS412 Advanced Cardiovascular Physiology",
-            "PHS413 Quantitative Pharmacology",
-            "PHS414 Neuroscience I",
-            "PHS415 Advanced Pulmonary Physiology",
-            "PHS416 Advanced Gastrointestinal Physiology",
-            "PHS417 Advanced Renal and Body Fluids",
-            "PHS421 Advanced Endocrine and Reproduction",
-            "PHS422 Neuroscience II",
-            "PHS423 Sensory Physiology",
-            "PHS424 Seminar",
-            "PHS425 Project",
-        ],
-        "Credits": [
-            4, 2, 3, 3, 2, 2, 3, 2, 3, 3,
-            4, 3, 3, 2, 2, 2, 3, 4, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 3, 3,
-            3, 3, 3, 3, 2, 2, 3, 1, 3, 2,
-            2, 2, 3, 2, 3, 3, 2, 3, 3, 2,
-            2, 1, 1, 2, 3, 3, 2, 3, 3, 3,
-            3, 2, 6
-        ],
-        "Grade_5.0_Scale": [
-            3.0, 4.0, 3.0, 5.0, 3.0, 4.0, 4.0, 3.0, 2.0, 4.0,
-            5.0, 2.0, 4.0, 3.0, 2.0, 3.0, 3.0, 3.0, 2.0, 4.0,
-            4.0, 5.0, 4.0, 5.0, 3.0, 4.0, 4.0, 4.0, 3.0, 4.0,
-            5.0, 5.0, 4.0, 3.0, 3.0, 4.0, 5.0, 3.0, 4.0, 3.0,
-            5.0, 4.0, 5.0, 3.0, 4.0, 5.0, 5.0, 4.0, 4.0, 5.0,
-            4.0, 5.0, 5.0, 5.0, 4.0, 5.0, 5.0, 5.0, 4.0, 5.0,
-            4.0, 5.0, 5.0
-        ],
-    }
+# Translations
+*.mo
+*.pot
 
-    # Create a DataFrame
-    df = pd.DataFrame(data)
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
 
-    # Convert grades to a 4.0 scale
-    converted_df = convert_gpa_to_4_scale(df, grade_column="Grade_5.0_Scale", credit_column="Credits", new_gpa_column="Grade_4.0_Scale")
+# Flask stuff:
+instance/
+.webassets-cache
 
-    # Calculate GPA on the 4.0 scale
-    converted_df["Weighted_GPA"] = converted_df["Grade_4.0_Scale"] * converted_df["Credits"]
-    total_credits = converted_df["Credits"].sum()
-    overall_gpa = converted_df["Weighted_GPA"].sum() / total_credits
+# Scrapy stuff:
+.scrapy
 
-    # Print the converted DataFrame and overall GPA
-    print("Converted Grades:")
-    print(converted_df)
-    print(f"\nOverall GPA on a 4.0 scale: {overall_gpa:.2f}")
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# UV
+#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#uv.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#pdm.lock
+#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
+#   in version control.
+#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
+.pdm.toml
+.pdm-python
+.pdm-build/
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/
+
+# PyPI configuration file
+.pypirc
